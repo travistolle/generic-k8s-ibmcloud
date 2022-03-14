@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash 
 ## IPs of the worker nodes (passed via API call in postman run sequence)
 echo {{node_1_internal_address}} > /root/nodes
 echo {{node_2_internal_address}} >> /root/nodes
@@ -25,12 +25,12 @@ usermod -aG docker rhel
 mkdir /etc/docker
 cat <<EOF | sudo tee /etc/docker/daemon.json
 {
-  'exec-opts': ['native.cgroupdriver=systemd'],
-  'log-driver': 'json-file',
-  'log-opts': {
-    'max-size': '100m'
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m"
   },
-  'storage-driver': 'overlay2'
+  "storage-driver": "overlay2"
 }
 EOF
 # Start and enable Docker Service to start at boot
@@ -65,25 +65,25 @@ kubectl apply -f /root/canal.yaml
 cp -i /etc/kubernetes/admin.conf /home/rhel/.kube/config
 chown rhel:rhel /home/rhel/.kube -R
 # SSH to workers and join them to the cluster
-echo 'The node error log file' > /root/node_errors
+echo "The node error log file" > /root/node_errors
 TOKEN=$(kubeadm token generate)
 JOIN=$(kubeadm token create $TOKEN --print-join-command)
 for NODE in $(cat /root/nodes)
 do 
 ssh-keyscan $NODE >> /root/.ssh/known_hosts
-SSH_COMMAND='sshpass -p bookitty ssh -o StrictHostKeyChecking=no root@$NODE $JOIN'
+SSH_COMMAND="sshpass -p bookitty ssh -o StrictHostKeyChecking=no root@$NODE $JOIN"
 echo $SSH_COMMAND >> /root/command_list
 ${SSH_COMMAND} >&2 >> /root/command_list
-SSH_EXIT_STATUS='${?}'
-if [[ '${SSH_EXIT_STATUS}' -ne 0 ]]
+SSH_EXIT_STATUS="${?}"
+if [[ "${SSH_EXIT_STATUS}" -ne 0 ]]
 then
-  EXIT_STATUS='${SSH_EXIT_STATUS}'
-  echo 'Execution on ${NODE} failed. $EXIT_STATUS' >&2 >>/root/node_errors
+  EXIT_STATUS="${SSH_EXIT_STATUS}"
+  echo "Execution on ${NODE} failed. $EXIT_STATUS" >&2 >>/root/node_errors
 fi
 cat ${EXIT_STATUS} >> /root/node_errors
 done
 # export KUBECONFIG=/etc/kubernetes/admin.conf
-echo 'export KUBECONFIG=/etc/kubernetes/admin.conf' >> /root/.bashrc
+echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >> /root/.bashrc
 cat /etc/kubernetes/admin.conf > /root/k8s-config
 # Install HELM on the cluster
 wget https://get.helm.sh/helm-v3.4.1-linux-amd64.tar.gz -O /root/helm-v3.4.1-linux-amd64.tar.gz

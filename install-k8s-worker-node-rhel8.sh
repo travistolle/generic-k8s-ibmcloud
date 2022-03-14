@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash 
 ## setup root user for sshpass
 echo root:bookitty | chpasswd
 ## Disable Swap - per kubeadm instructions
@@ -18,12 +18,12 @@ usermod -aG docker rhel
 mkdir /etc/docker
 cat <<EOF | sudo tee /etc/docker/daemon.json
 {
-  "exec-opts": ["native.cgroupdriver=systemd"],
-  "log-driver": "json-file",
-  "log-opts": {
-    "max-size": "100m"
+  'exec-opts': ['native.cgroupdriver=systemd'],
+  'log-driver': 'json-file',
+  'log-opts': {
+    'max-size': '100m'
   },
-  "storage-driver": "overlay2"
+  'storage-driver': 'overlay2'
 }
 EOF
 # Start and enable Docker Service to start at boot
