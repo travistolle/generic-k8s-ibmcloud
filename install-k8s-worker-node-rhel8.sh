@@ -12,8 +12,8 @@ yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce
 yum makecache
 # Install Docker CE
 yum install docker-ce -y
-# Add user rhel to docker group
-usermod -aG docker rhel
+# Add user root to docker group
+usermod -aG docker root
 # Configure Docker to use use systemd for the management of the container’s cgroups
 mkdir /etc/docker
 cat <<EOF | sudo tee /etc/docker/daemon.json

@@ -1,9 +1,4 @@
 #!/bin/bash
-## IPs of the worker nodes (passed via API call in postman run sequence)
-echo {{node_1_internal_address}} > /root/nodes
-echo {{node_2_internal_address}} >> /root/nodes
-echo {{node_3_internal_address}} >> /root/nodes
-NODE_LIST='home/nodes'
 ## Disable Swap - per kubeadm instructions
 swapoff -a
 # Install sshpass
@@ -19,8 +14,8 @@ yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce
 yum makecache
 # Install Docker CE
 yum install docker-ce -y
-# Add RHEL8 default user rhel to docker group
-usermod -aG docker rhel
+# Add root to docker group
+usermod -aG docker root
 # Configure Docker to use use systemd for the management of the container’s cgroups
 mkdir /etc/docker
 cat <<EOF | sudo tee /etc/docker/daemon.json
@@ -57,18 +52,17 @@ dnf provides tc -y
 dnf install iproute-tc -y
 yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
 systemctl enable --now kubelet
-kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-cert-extra-sans={{master_public_address}}
+kubeadm init --pod-network-cidr=192.168.0.0/16 --apiserver-cert-extra-sans=$MASTER_PUBLIC_ADDRESS
 ## Deploy networking with canal
 export KUBECONFIG=/etc/kubernetes/admin.conf
 kubectl apply -f /root/canal.yaml
-## Copy the admin config to the rhel user kube config
-cp -i /etc/kubernetes/admin.conf /home/rhel/.kube/config
-chown rhel:rhel /home/rhel/.kube -R
+## Copy the admin config to the root user kube config
+cp -i /etc/kubernetes/admin.conf /root/.kube/config
 # SSH to workers and join them to the cluster
 echo 'The node error log file' > /root/node_errors
 TOKEN=$(kubeadm token generate)
 JOIN=$(kubeadm token create $TOKEN --print-join-command)
-for NODE in $(cat /root/nodes)
+for NODE in $(cat /tmp/nodes)
 do 
 ssh-keyscan $NODE >> /root/.ssh/known_hosts
 SSH_COMMAND='sshpass -p bookitty ssh -o StrictHostKeyChecking=no root@$NODE $JOIN'
