@@ -32,6 +32,8 @@ EOF
 systemctl enable --now docker
 systemctl daemon-reload
 systemctl restart docker
+# Wait for docker to restart
+
 ## Install kubeadm and kubectl and kublet
 cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
