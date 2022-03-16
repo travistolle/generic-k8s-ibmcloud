@@ -110,7 +110,7 @@ partC="${partA}${partB}"
 partD="sshpass -p glisten-earshot-harbinger-frank3l ssh -o StrictHostKeyChecking=no "
 partE="${partD} ${partC} $JOIN"
 echo $partE >> /root/command_list.sh
-done < /tmp/nodes
+done < /run/media/nodes
 # SSH to workers and join them to the cluster
 chmod +x /root/command_list.sh
 /root/command_list.sh
