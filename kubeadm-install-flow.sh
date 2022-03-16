@@ -107,7 +107,7 @@ ssh-keyscan $node >> /root/.ssh/known_hosts
 partA="root@"
 partB=$node
 partC="${partA}${partB}"
-partD="sshpass -p bookitty ssh -o StrictHostKeyChecking=no "
+partD="sshpass -p glisten-earshot-harbinger-frank3l ssh -o StrictHostKeyChecking=no "
 partE="${partD} ${partC} $JOIN"
 echo $partE >> /root/command_list.sh
 done < /tmp/nodes
