@@ -1,6 +1,7 @@
 #!/bin/bash 
 ### Install Git and clone scripts for control node
-dnf install -y Git
+dnf install -y git
+dnf install -y wget
 wget https://github.com/travistolle/generic-k8s-ibmcloud/blob/main/kubelet-install-flow.sh -O /tmp/node.sh
 chmod +x /tmp/node.sh
 /tmp/node.sh
