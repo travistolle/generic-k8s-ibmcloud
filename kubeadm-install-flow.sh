@@ -87,11 +87,10 @@ sudo systemctl start kubelet
 ## Set the pod network CIDR
 sudo kubeadm init --pod-network-cidr=192.168.0.0/16
 ## Make kubectl work for current user
-# Determine is $HOME is null, if not then $HOME set to /root
-if [ -z $HOME ]
+# Determine if $HOME is empty or not "/root", if not then $HOME set to /root
+if [ -z $HOME | $HOME != "/root"]
 then
-export HOME="/root"
-else
+export HOME='/root'
 fi
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
