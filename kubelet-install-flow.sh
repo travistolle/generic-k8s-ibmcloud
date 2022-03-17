@@ -7,7 +7,7 @@ sudo swapoff -a
 # RHEL 8.4 vsi image being used doesn't have swap in fstab by default
 ### Configure SSH
 ## Setup root user for sshpass
-echo root:bookitty | chpasswd
+echo root:glisten-earshot-harbinger-frank3l | chpasswd
 ## Edit sshd_config to allow password access
 #sudo sed -i '/PasswordAuthentication/ s/^#//' /etc/ssh/sshd_config
 sudo sed -i '/PasswordAuthentication/ s/ no$/ yes/' /etc/ssh/sshd_config
