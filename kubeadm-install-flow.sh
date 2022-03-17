@@ -90,11 +90,11 @@ sudo kubeadm init --pod-network-cidr=192.168.0.0/16
 # Determine if $HOME is empty or not "/root", if not then $HOME set to /root
 #if [ -z $HOME | $HOME != "/root"]
 #then
-#export HOME='/root'
+export HOME='/root'
 #fi
-mkdir -p /root/.kube
-sudo cp -i /etc/kubernetes/admin.conf /root/.kube/config
-sudo chown $(id -u):$(id -g) /root/.kube/config
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ## Remove the taints from this node so that it can be used as a worker node.
 # kubectl taint nodes --all node-role.kubernetes.io/master-
 ### Install Calico Pod network CNI add-on
