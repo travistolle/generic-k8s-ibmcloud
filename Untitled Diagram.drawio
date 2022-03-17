@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-03-17T21:02:49.820Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36" etag="AMr2j28S1ujxSDhxGOKR" version="16.6.5" type="github" pages="2">
+<mxfile host="app.diagrams.net" modified="2022-03-17T21:03:03.496Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36" etag="O1DZ8GAKHj29fR6zO5Ap" version="16.6.5" type="github" pages="2">
   <diagram id="2f404044-711c-603c-8f00-f6bb4c023d3c" name="Reference Architecture">
     <mxGraphModel dx="1530" dy="840" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
       <root>
@@ -396,9 +396,6 @@
         </mxCell>
         <mxCell id="97zgOhCZsau5eKam0mrR-20" value="" style="aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;fontColor=#4277BB;labelBackgroundColor=#ffffff;fontSize=12;spacingTop=3;image;image=img/lib/ibm/vpc/LoadBalancer.svg;" vertex="1" parent="efqXd9MiSdRpHIj-xnyF-5">
           <mxGeometry x="495" y="30" width="60" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="efqXd9MiSdRpHIj-xnyF-1" value="EDGE&lt;div&gt;SERVICES&lt;/div&gt;" style="aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;image;image=img/lib/ibm/infrastructure/edge_services.svg;labelBackgroundColor=none;strokeColor=none;strokeWidth=2;fillColor=#808080;gradientColor=none;fontSize=12;fontColor=#4277BB;rounded=0;verticalAlign=top;spacingLeft=5;" vertex="1" parent="JF6Fx0vOj9aeW27Wvgia-1">
-          <mxGeometry x="-80" y="-30" width="60" height="60" as="geometry" />
         </mxCell>
         <mxCell id="efqXd9MiSdRpHIj-xnyF-25" value="" style="group" vertex="1" connectable="0" parent="JF6Fx0vOj9aeW27Wvgia-1">
           <mxGeometry x="360" y="-130" width="60" height="90" as="geometry" />
